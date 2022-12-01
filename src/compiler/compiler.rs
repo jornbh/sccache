@@ -851,7 +851,8 @@ pub async fn write_temp_file(
     let path = path.to_owned();
     pool.spawn_blocking(move || {
         let dir = tempfile::Builder::new().prefix("sccache").tempdir()?;
-        let src = dir.path().join(path);
+        //        let src = dir.path().join(path);
+        let src = PathBuf::from("/home/joh4-local/Documents/code/rs/sccache/delete_me_sccache_temp").join(path);
         let mut file = File::create(&src)?;
         file.write_all(&contents)?;
         Ok::<_, anyhow::Error>((dir, src))
